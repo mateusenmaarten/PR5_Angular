@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-top: 60px;
+  padding-bottom: 50px;
+  background-color: cadetblue;
+  background-position:top;
+  background-attachment: fixed;
+}
+
+.footer {
+
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  line-height: 50px; /* Vertically center the text there */
+  background-color: #343a40 !important;
+  text-align: left;
+  padding-left: 5%;
+}
+
+.navbar {
+  background-color: #343a40 !important;
+}
+ul{
+  text-align: left;
+}
+
+.jumbotron {
+  background-color: #dcdcdd !important;
+}
+
+.card-header {
+  background-color: #4c5c68 !important;
+}
+
+.card-body {
+  background-color: #dcdcdd !important;
+}
+
+.card-footer {
+  background-color: #c5c3c6 !important;
+}
+
+.list-group-item {
+  background-color: #dcdcdd !important;
+}
+
+p{
+  font:900 !important;
+  font-family: fantasy !important;
+}
+
+label{
+  color: azure;
+}
