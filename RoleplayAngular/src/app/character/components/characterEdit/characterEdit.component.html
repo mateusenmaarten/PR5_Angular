@@ -1,0 +1,75 @@
+<h1>{{header}}</h1>
+
+<hr />
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="container col-md-6">
+        <div class="form-group">
+            <label asp-for="Character.CharacterName" class="control-label">Name</label>
+            <input required type="text" class="form-control" [ngModel]="character.characterName" name="name" />
+            <span asp-validation-for="character.characterName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="" >Player</label>
+            <select for="" class="form-control" [ngModel]="character.playerID" name="playerID">
+              <option *ngFor="let player of players" value={{player.playerID}}>{{player.firstName}}</option>
+            </select>
+            <span asp-validation-for="Character.PlayerID" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="" >Class</label>
+            <select for="" class="form-control" [ngModel]="character.characterClassID" name="classID">
+              <option *ngFor="let class of classes" value={{class.characterClassID}}>{{class.name}}</option>
+            </select>
+            <span asp-validation-for="Character.CharacterClassID" class="text-danger"></span>
+        </div>
+
+        <label asp-for="" >Gender</label>
+        <div class="form-group">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" for=""  type="radio" value="Female" [ngModel]="character.characterGender" name="gender">
+                <label class="form-check-label" for="" >Female</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" for=""  type="radio" value="Male" [ngModel]="character.characterGender" name="gender">
+                <label class="form-check-label" for="" >Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" for="" type="radio"  value="Unspecified" [ngModel]="character.characterGender" name="gender">
+                <label class="form-check-label" for="">Unspecified</label>
+            </div>
+            <span asp-validation-for="Character.CharacterGender" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="" >Description</label>
+            <textarea rows="5" required type="textarea" class="form-control" [ngModel]="character.characterDescription" name="description"></textarea>
+            <span asp-validation-for="Character.CharacterDescription" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="" >Age</label>
+            <input required type="number" class="form-control" [ngModel]="character.characterAge" name="age"/>
+            <span asp-validation-for="Character.CharacterAge" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="" >Favourite Weapon</label>
+            <input required type="text" class="form-control" [ngModel]="character.favouriteWeapon" name="favouriteWeapon"/>
+            <span asp-validation-for="character.favouriteWeapon" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="" >Hometown</label>
+            <input type="text" class="form-control" [ngModel]="character.homeTown" name="homeTown"/>
+            <span asp-validation-for="character.homeTown" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save Character</button>
+        </div>
+    </form>
+<div>
+    <a routerLink="/character">Back to List</a>
+</div>
+<p></p>

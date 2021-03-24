@@ -1,7 +1,7 @@
 <h1 class="text-center">Characters</h1>
 <p></p>
 
-<a routerLink="/create-character">Create a new character</a>
+<a routerLink="add/0">Create a new character</a>
 
 <p></p>
 
@@ -16,25 +16,25 @@
 </form>
 
 <div class="row">
-  <div class="col-sm-6 d-flex align-items-stretch">
+  <div class="col-sm-6 d-flex align-items-stretch" *ngFor="let character of characters">
     <div class="card w-100 mb-5">
-      <div class="card-header text-center text-light">NAAM</div>
+      <div class="card-header text-center text-light">{{character.characterName}}</div>
       <div class="card-body text-center">
         <i class="fas fa-hat-wizard" style="font-size: xx-large;"></i>
         <p></p>
-        <h6 class="card-title">GENDER</h6>
-        <h5 class="card-title">CLASSNAME</h5>
-        <p class="card-text">DESCRIPTION</p>
+        <h6 class="card-title">{{character.characterGender}}</h6>
+        <h5 class="card-title">{{character.characterClassID}}</h5>
+        <p class="card-text">{{character.characterDescription}}</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Age: AGE</li>
-        <li class="list-group-item">Favourite weapon: FW</li>
-        <li class="list-group-item">Hometown: HT</li>
-        <li class="list-group-item">Created by PLAYER</li>
+        <li class="list-group-item">Age: {{character.characterAge}}</li>
+        <li class="list-group-item">Favourite weapon: {{character.favouriteWeapon}}</li>
+        <li class="list-group-item">Hometown: {{character.homeTown}}</li>
+        <li class="list-group-item">Created by {{character.playerID}}</li>
       </ul>
       <div class="card-footer">
-        <a >Edit |</a>
-        <a >Delete</a>
+        <a [routerLink]="['edit',character.characterID]">Edit </a>|
+        <a routerLink="/character" (click)="onDelete(character.characterID)">Delete</a>
       </div>
     </div>
   </div>

@@ -9,10 +9,10 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { RulesComponent } from './rules/rules.component';
 import { WorldComponent } from './world/world.component';
 import { CharacterComponent } from './character/components/character/character.component';
-import { CharacterCreateComponent } from './character/components/characterCreate/characterCreate.component';
-import { CharacterDetailComponent } from './character/components/characterDetail/characterDetail.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { CharacterEditComponent } from './character/components/characterEdit/characterEdit.component';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -21,8 +21,8 @@ const appRoutes: Routes = [
   { path: 'rules', component: RulesComponent},
   { path: 'world', component: WorldComponent},
   { path: 'character', component: CharacterComponent},
-  { path: 'create-character', component: CharacterCreateComponent},
-  { path: 'detail-character', component: CharacterDetailComponent},
+  { path: 'character/add/:id', component: CharacterEditComponent},
+  { path: 'character/edit/:id', component: CharacterEditComponent},
   { path: '**', component: PageNotFoundComponent}
 ];
 
@@ -34,8 +34,7 @@ const appRoutes: Routes = [
     PrivacyComponent,
     RulesComponent,
     CharacterComponent,
-    CharacterCreateComponent,
-    CharacterDetailComponent,
+    CharacterEditComponent,
     WorldComponent,
     NavbarComponent,
     FooterComponent
@@ -43,6 +42,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes,{enableTracing: false}),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
