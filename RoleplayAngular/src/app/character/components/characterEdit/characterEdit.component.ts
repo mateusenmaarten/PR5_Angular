@@ -20,6 +20,7 @@ export class CharacterEditComponent implements OnInit {
 
   players : Player[] = [];
   classes : CharacterClass[] = [];
+  
   character : Character = {
     characterID: 0,
       playerID: 0,
@@ -49,7 +50,7 @@ export class CharacterEditComponent implements OnInit {
     }
 
     this.players = this.playerService.onGet();
-    this.classes = this.characterClassService.onGet();
+    this.characterClassService.onGet().subscribe(x => {this.classes = x});
   }
 
   onSubmit(form : NgForm){

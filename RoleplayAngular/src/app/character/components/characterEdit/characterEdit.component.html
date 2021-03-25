@@ -19,7 +19,7 @@
         <div class="form-group">
             <label for="" >Class</label>
             <select for="" class="form-control" [ngModel]="character.characterClassID" name="classID">
-              <option *ngFor="let class of classes" value={{class.characterClassID}}>{{class.name}}</option>
+              <option *ngFor="let class of classes" value={{class.characterClassID}}>{{class.characterClassName}}</option>
             </select>
             <span asp-validation-for="Character.CharacterClassID" class="text-danger"></span>
         </div>

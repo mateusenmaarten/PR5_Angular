@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/_models/character.model';
-import { Player } from 'src/app/_models/player.model';
 import { CharacterService } from 'src/app/_services/character.service';
-import { CharacterClassService } from 'src/app/_services/characterClass.service';
-import { PlayerService } from 'src/app/_services/player.service';
+
+
 
 @Component({
   selector: 'app-character',
@@ -14,15 +13,15 @@ export class CharacterComponent implements OnInit {
 
   characters : Character[] = [];
 
-  constructor(private characterService : CharacterService, private characterClassService : CharacterClassService ) { }
+  constructor(private characterService : CharacterService) { }
 
   ngOnInit() {
-    this.characters = this.characterService.onGet();
+    this.characterService.onGet().subscribe(x => {this.characters = x});
   }
 
   onDelete(id : number){
     //check for user == character.userId -> else no authority to delete!
-    
+
     //Confirm with Alert -> delete : yes /no
 
     this.characterService.onDelete(id);

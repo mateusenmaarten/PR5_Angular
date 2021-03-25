@@ -1,6 +1,6 @@
 export class CharacterClass{
   public characterClassID : number;
-  public name : string;
-  public description : string;
-  public icon : string;
+  public characterClassName : string;
+  public characterClassDescription : string;
+  public characterClassIcon : string;
 }

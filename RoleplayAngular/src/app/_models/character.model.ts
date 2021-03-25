@@ -1,3 +1,6 @@
+import { CharacterClass } from "./CharacterClass.model";
+import { Player } from "./player.model";
+
 export class Character {
   public characterID? : number;
   public playerID : number;
@@ -9,4 +12,7 @@ export class Character {
   public characterAge : number;
   public favouriteWeapon : string;
   public homeTown : string;
+
+  public player? : Player;
+  public characterClass? : CharacterClass;
 }

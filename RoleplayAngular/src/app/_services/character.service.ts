@@ -1,53 +1,62 @@
 import { Injectable } from '@angular/core';
 import { Character } from '../_models/character.model';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { CharacterClass } from '../_models/CharacterClass.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharacterService {
-  characters: Character[] = [
-    {
-      characterID: 1,
-      playerID: 1,
-      userName: 'Maarten',
-      characterClassID: 1,
-      characterName: 'Bernard',
-      characterGender: 'Male',
-      characterDescription: 'Mighty healer',
-      characterAge: 32,
-      favouriteWeapon: 'Mace',
-      homeTown: 'Phandalin',
-    },
-    {
-      characterID: 2,
-      playerID: 2,
-      userName: 'Bert',
-      characterClassID: 1,
-      characterName: 'Gork',
-      characterGender: 'Male',
-      characterDescription: 'Brutal fighter',
-      characterAge: 25,
-      favouriteWeapon: 'Club',
-      homeTown: 'Azaroth',
-    },
-    {
-      characterID: 3,
-      playerID: 3,
-      userName: 'Jan',
-      characterClassID: 2,
-      characterName: 'Habib',
-      characterGender: 'Male',
-      characterDescription: 'Trader at hearth',
-      characterAge: 56,
-      favouriteWeapon: 'Dagger',
-      homeTown: 'Haven',
-    },
-  ];
+  characters: Character[] = [];
+  //   {
+  //     characterID: 1,
+  //     playerID: 1,
+  //     userName: 'Maarten',
+  //     characterClassID: 1,
+  //     characterName: 'Bernard',
+  //     characterGender: 'Male',
+  //     characterDescription: 'Mighty healer',
+  //     characterAge: 32,
+  //     favouriteWeapon: 'Mace',
+  //     homeTown: 'Phandalin',
+  //   },
+  //   {
+  //     characterID: 2,
+  //     playerID: 2,
+  //     userName: 'Bert',
+  //     characterClassID: 1,
+  //     characterName: 'Gork',
+  //     characterGender: 'Male',
+  //     characterDescription: 'Brutal fighter',
+  //     characterAge: 25,
+  //     favouriteWeapon: 'Club',
+  //     homeTown: 'Azaroth',
+  //   },
+  //   {
+  //     characterID: 3,
+  //     playerID: 3,
+  //     userName: 'Jan',
+  //     characterClassID: 2,
+  //     characterName: 'Habib',
+  //     characterGender: 'Male',
+  //     characterDescription: 'Trader at hearth',
+  //     characterAge: 56,
+  //     favouriteWeapon: 'Dagger',
+  //     homeTown: 'Haven',
+  //   },
+  // ];
 
-  constructor() {}
+  url : string = 'https://localhost:44328/api/Character';
 
-  onGet() {
-    return this.characters;
+
+  constructor(private http : HttpClient) {}
+
+  onGet() : Observable<Character[]>{
+    //return this.characters;
+    return this.http.get<Character[]>(this.url);
+
   }
 
   onGetCharacter(id : number){
