@@ -10,75 +10,40 @@ import { CharacterClass } from '../_models/CharacterClass.model';
 })
 export class CharacterService {
   characters: Character[] = [];
-  //   {
-  //     characterID: 1,
-  //     playerID: 1,
-  //     userName: 'Maarten',
-  //     characterClassID: 1,
-  //     characterName: 'Bernard',
-  //     characterGender: 'Male',
-  //     characterDescription: 'Mighty healer',
-  //     characterAge: 32,
-  //     favouriteWeapon: 'Mace',
-  //     homeTown: 'Phandalin',
-  //   },
-  //   {
-  //     characterID: 2,
-  //     playerID: 2,
-  //     userName: 'Bert',
-  //     characterClassID: 1,
-  //     characterName: 'Gork',
-  //     characterGender: 'Male',
-  //     characterDescription: 'Brutal fighter',
-  //     characterAge: 25,
-  //     favouriteWeapon: 'Club',
-  //     homeTown: 'Azaroth',
-  //   },
-  //   {
-  //     characterID: 3,
-  //     playerID: 3,
-  //     userName: 'Jan',
-  //     characterClassID: 2,
-  //     characterName: 'Habib',
-  //     characterGender: 'Male',
-  //     characterDescription: 'Trader at hearth',
-  //     characterAge: 56,
-  //     favouriteWeapon: 'Dagger',
-  //     homeTown: 'Haven',
-  //   },
-  // ];
-
+  characterToEdit : Character = new Character;
   url : string = 'https://localhost:44328/api/Character';
-
 
   constructor(private http : HttpClient) {}
 
   onGet() : Observable<Character[]>{
-    //return this.characters;
     return this.http.get<Character[]>(this.url);
-
   }
 
-  onGetCharacter(id : number){
-    return this.characters.find(x => x.playerID === id);
+  onGetCharacter(id : number) : Observable<Character>{
+    return this.http.get<Character>(this.url+'/' + id);
   }
 
   onAdd(character: Character) {
     this.characters.push(character);
   }
 
-  onUpdate(character : Character){
-    let characterToEdit = this.characters.find(x => x.characterID === character.characterID);
-    characterToEdit.characterID = character.characterID;
-    characterToEdit.playerID = character.playerID;
-    characterToEdit.userName = character.userName;
-    characterToEdit.characterClassID = character.characterClassID;
-    characterToEdit.characterName = character.characterName;
-    characterToEdit.characterGender = character.characterGender;
-    characterToEdit.characterDescription = character.characterDescription;
-    characterToEdit.characterAge = character.characterAge;
-    characterToEdit.favouriteWeapon = character.favouriteWeapon;
-    characterToEdit.homeTown = character.homeTown;
+  onUpdate(character : Character) : Observable<Character>{
+    this.onGetCharacter(character.characterID).subscribe(x => { this.characterToEdit = x; });
+
+    this.characterToEdit.characterID = character.characterID;
+    this.characterToEdit.playerID = character.playerID;
+    this.characterToEdit.userName = character.player.userName;
+    this.characterToEdit.characterClassID = character.characterClassID;
+    this.characterToEdit.characterName = character.characterName;
+    this.characterToEdit.characterGender = character.characterGender;
+    this.characterToEdit.characterDescription = character.characterDescription;
+    this.characterToEdit.characterAge = character.characterAge;
+    this.characterToEdit.favouriteWeapon = character.favouriteWeapon;
+    this.characterToEdit.homeTown = character.homeTown;
+
+    console.log(this.characterToEdit);
+
+    return this.http.put<Character>(this.url + '/' + character.characterID, this.characterToEdit);
   }
 
   onDelete(id: number) {

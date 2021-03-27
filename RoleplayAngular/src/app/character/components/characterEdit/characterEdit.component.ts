@@ -20,18 +20,18 @@ export class CharacterEditComponent implements OnInit {
 
   players : Player[] = [];
   classes : CharacterClass[] = [];
-  
+
   character : Character = {
     characterID: 0,
-      playerID: 0,
-      userName: '',
-      characterClassID: 0,
-      characterName: '',
-      characterGender: '',
-      characterDescription: '',
-      characterAge: 0,
-      favouriteWeapon: '',
-      homeTown: '',
+    playerID: 0,
+    userName: '',
+    characterClassID: 0,
+    characterName: '',
+    characterGender: '',
+    characterDescription: '',
+    characterAge: 0,
+    favouriteWeapon: '',
+    homeTown: '',
   }
 
   constructor(
@@ -46,7 +46,7 @@ export class CharacterEditComponent implements OnInit {
     this.header = this.id === 0? 'Add Character' : 'Edit Character';
 
     if(this.id != 0 ){
-      this.character = this.characterService.onGetCharacter(this.id);
+      this.characterService.onGetCharacter(this.id).subscribe(x => {this.character = x});
     }
 
     this.players = this.playerService.onGet();
@@ -58,13 +58,13 @@ export class CharacterEditComponent implements OnInit {
     let character : Character = {
       characterID : this.id,
       playerID : form.value.playerID,
-      userName : form.value.userName,
+      userName : form.value.userName, //get from userService?
       characterName : form.value.name,
       characterDescription : form.value.description,
       characterClassID : form.value.classID,
       characterGender : form.value.gender,
       characterAge : form.value.age,
-      favouriteWeapon : form.value.favouritWeapon,
+      favouriteWeapon : form.value.favouriteWeapon,
       homeTown : form.value.homeTown
     }
     if(this.id === 0){
@@ -75,7 +75,7 @@ export class CharacterEditComponent implements OnInit {
     }
     else{
       //Update mode
-      this.characterService.onUpdate(character);
+      this.characterService.onUpdate(character).subscribe();
     }
     this.router.navigateByUrl('/character');
   }

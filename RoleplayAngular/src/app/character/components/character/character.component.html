@@ -1,40 +1,51 @@
 <h1 class="text-center">Characters</h1>
 <p></p>
-
 <a routerLink="add/0">Create a new character</a>
-
 <p></p>
 
 <form>
   <div class="form-group">
     <p>
-      <input  />
+      <input />
       <input type="submit" value="Search by name" class="btn btn-primary" />
     </p>
-    <a >Show all characters</a>
+    <a>Show all characters</a>
   </div>
 </form>
 
 <div class="row">
-  <div class="col-sm-6 d-flex align-items-stretch" *ngFor="let character of characters">
+  <div
+    class="col-sm-6 d-flex align-items-stretch"
+    *ngFor="let character of characters"
+  >
     <div class="card w-100 mb-5">
-      <div class="card-header text-center text-light">{{character.characterName}}</div>
+      <div class="card-header text-center text-light">
+        {{ character.characterName }}
+      </div>
       <div class="card-body text-center">
-        <i class="fas fa-hat-wizard" style="font-size: xx-large;"></i>
+        <i class="fas fa-hat-wizard" style="font-size: xx-large"></i>
         <p></p>
-        <h6 class="card-title">{{character.characterGender}}</h6>
-        <h5 class="card-title">{{character.characterClass.characterClassName}}</h5>
-        <p class="card-text">{{character.characterDescription}}</p>
+        <h6 class="card-title">{{ character.characterGender }}</h6>
+        <h5 class="card-title">
+          {{ character.characterClass.characterClassName }}
+        </h5>
+        <p class="card-text">{{ character.characterDescription }}</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Age: {{character.characterAge}}</li>
-        <li class="list-group-item">Favourite weapon: {{character.favouriteWeapon}}</li>
-        <li class="list-group-item">Hometown: {{character.homeTown}}</li>
-        <li class="list-group-item">Created by {{character.player.firstName}}</li>
+        <li class="list-group-item">Age: {{ character.characterAge }}</li>
+        <li class="list-group-item">
+          Favourite weapon: {{ character.favouriteWeapon }}
+        </li>
+        <li class="list-group-item">Hometown: {{ character.homeTown }}</li>
+        <li class="list-group-item">
+          Created by {{ character.player.firstName }}
+        </li>
       </ul>
       <div class="card-footer">
-        <a [routerLink]="['edit',character.characterID]">Edit</a> |
-        <a routerLink="/character" (click)="onDelete(character.characterID)">Delete</a>
+        <a [routerLink]="['edit', character.characterID]">Edit</a> |
+        <a routerLink="/character" (click)="onDelete(character.characterID)"
+          >Delete</a
+        >
       </div>
     </div>
   </div>

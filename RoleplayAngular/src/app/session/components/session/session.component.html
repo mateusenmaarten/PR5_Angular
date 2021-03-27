@@ -1,0 +1,53 @@
+<h1>Sessions</h1>
+<p></p>
+<a asp-action="Create">Create a new Session</a>
+<p></p>
+<div class="container">
+  <div class="row">
+    <div
+      class="col-sm-6 d-flex align-items-stretch"
+      *ngFor="let session of sessions"
+    >
+      <div class="card w-100 mb-5">
+        <div class="card-header text-center text-light">
+          {{ session.adventure.title }}
+        </div>
+        <div class="card-body text-center">
+          <p>
+            <i class="fas fa-book-reader"></i> {{ session.sessionGamemaster }}
+          </p>
+          <h5 class="card-title">{{ session.date }}</h5>
+          <div *ngIf="!session.isPlayed; then thenBlock; else elseBlock"></div>
+          <ng-template #thenBlock
+            ><p class="card-text">Planned Session</p></ng-template
+          >
+          <ng-template #elseBlock
+            ><p class="card-text">{{ session.recap }}</p>
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-center">
+                <i class="fas fa-users"></i>
+                <ul class="list-group list-group-flush">
+                  <li *ngFor="let player of players" class="list-group-item">
+                    {{ player.firstName }}
+                  </li>
+                </ul>
+              </li>
+
+              <li class="list-group-item">
+                <i class="far fa-hourglass"></i> {{ session.duration }} hours
+              </li>
+            </ul>
+          </ng-template>
+        </div>
+        <div class="card-footer">
+          <a [routerLink]="['edit', session.sessionID]">Edit |</a>
+          <a routerLink="/session" (click)="onDelete(session.sessionID)">
+            Delete</a
+          >
+        </div>
+      </div>
+      <p></p>
+    </div>
+  </div>
+</div>

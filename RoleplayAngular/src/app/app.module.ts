@@ -14,6 +14,10 @@ import { FooterComponent } from './footer/footer.component';
 import { CharacterEditComponent } from './character/components/characterEdit/characterEdit.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AdventureComponent } from './adventure/components/adventure/adventure.component';
+import { AdventureEditComponent } from './adventure/components/adventureEdit/adventureEdit.component';
+import { SessionComponent } from './session/components/session/session.component';
+import { SessionEditComponent } from './session/components/sessionEdit/sessionEdit.component';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -24,6 +28,12 @@ const appRoutes: Routes = [
   { path: 'character', component: CharacterComponent},
   { path: 'character/add/:id', component: CharacterEditComponent},
   { path: 'character/edit/:id', component: CharacterEditComponent},
+  { path: 'adventure', component: AdventureComponent},
+  { path: 'adventure/add/:id', component: AdventureEditComponent},
+  { path: 'adventure/edit/:id', component: AdventureEditComponent},
+  { path: 'session', component: SessionComponent},
+  { path: 'session/add/:id', component: SessionEditComponent},
+  { path: 'session/edit/:id', component: SessionEditComponent},
   { path: '**', component: PageNotFoundComponent}
 ];
 
@@ -36,6 +46,10 @@ const appRoutes: Routes = [
     RulesComponent,
     CharacterComponent,
     CharacterEditComponent,
+    AdventureComponent,
+    AdventureEditComponent,
+    SessionComponent,
+    SessionEditComponent,
     WorldComponent,
     NavbarComponent,
     FooterComponent
