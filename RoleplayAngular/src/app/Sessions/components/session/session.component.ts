@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Adventure } from 'src/app/_models/adventure.model';
+import { Adventure } from 'src/app/Adventures/models/adventure.model';
 import { Player } from 'src/app/_models/player.model';
-import { Session } from 'src/app/_models/session.model';
+import { Session } from 'src/app/Sessions/models/session.model';
 
 @Component({
   selector: 'app-session',

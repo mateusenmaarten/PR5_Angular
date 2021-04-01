@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Adventure } from 'src/app/_models/adventure.model';
+import { Adventure } from 'src/app/Adventures/models/adventure.model';
 
 @Component({
   selector: 'app-adventure',

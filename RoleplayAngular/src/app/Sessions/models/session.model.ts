@@ -1,5 +1,5 @@
-import { Adventure } from "./adventure.model";
-import { Player } from "./player.model";
+import { Adventure } from "../../Adventures/models/adventure.model";
+import { Player } from "../../_models/player.model";
 
 export class Session{
   public sessionID : number;
