@@ -8,15 +8,23 @@
     type="button"
     data-toggle="collapse"
     data-target="#navbarMenu"
-    (click)="isCollapsed = !isCollapsed"  [attr.aria-expanded]="!isCollapsed" aria-controls="navbarsExampleDefault" aria-label="Toggle navigation"
+    (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="navbarMenu"
+    aria-label="Toggle navigation"
   >
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarMenu" >
+  <div
+    class="collapse navbar-collapse"
+    [class.collapse]="isCollapsed"
+    (window:resize)="isCollapsed = true"
+  >
     <ul class="navbar-nav flex-grow-1">
       <li class="nav-item">
         <a
+          (click)="isCollapsed = !isCollapsed"
           class="nav-link"
           [routerLink]="'/world'"
           >World</a
@@ -24,14 +32,15 @@
       </li>
       <li class="nav-item">
         <a
+          (click)="isCollapsed = !isCollapsed"
           class="nav-link"
           [routerLink]="'/rules'"
-
           >Rules</a
         >
       </li>
       <li class="nav-item">
         <a
+          (click)="isCollapsed = !isCollapsed"
           class="nav-link"
           [routerLink]="'character'"
           >Characters</a
@@ -39,6 +48,7 @@
       </li>
       <li class="nav-item">
         <a
+          (click)="isCollapsed = !isCollapsed"
           class="nav-link"
           [routerLink]="'/adventure'"
           >Adventures</a
@@ -46,6 +56,7 @@
       </li>
       <li class="nav-item">
         <a
+          (click)="isCollapsed = !isCollapsed"
           class="nav-link"
           [routerLink]="'/session'"
           >Sessions</a
@@ -53,6 +64,7 @@
       </li>
       <li class="nav-item">
         <a
+          (click)="isCollapsed = !isCollapsed"
           class="nav-link"
           [routerLink]="'/privacy'"
           >Privacy</a
