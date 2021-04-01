@@ -5,11 +5,12 @@ import { CharacterEditComponent } from './components/characterEdit/characterEdit
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from '../_helpers/auth.guard';
 
 const characterRoutes: Routes = [
   { path: 'character', component: CharacterComponent},
-  { path: 'character/add/:id', component: CharacterEditComponent},
-  { path: 'character/edit/:id', component: CharacterEditComponent},
+  { path: 'character/add/:id', component: CharacterEditComponent, canActivate: [AuthGuard]},
+  { path: 'character/edit/:id', component: CharacterEditComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

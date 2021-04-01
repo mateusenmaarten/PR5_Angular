@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Character } from '../../models/character.model';
 import { CharacterService } from '../../services/character.service';
 
@@ -11,7 +12,7 @@ export class CharacterComponent implements OnInit {
 
   characters : Character[] = [];
 
-  constructor(private characterService : CharacterService) { }
+  constructor(private characterService : CharacterService, private router: Router) { this.ngOnInit();}
 
   ngOnInit() {
     this.characterService.onGet().subscribe(x => {this.characters = x});

@@ -4,7 +4,7 @@ import { Player } from "../../_models/player.model";
 export class Character {
   public characterID? : number;
   public playerID : number;
-  public userName : string;
+  public userName? : string;
   public characterClassID : number;
   public characterName : string;
   public characterGender : string;

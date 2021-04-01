@@ -12,10 +12,13 @@ import { CharactersModule } from './Characters/Characters.module';
 import { CoreModule } from './Core/Core.module';
 import { AdventuresModule } from './Adventures/Adventures.module';
 import { SessionsModule } from './Sessions/Sessions.module';
+import { LoginComponent } from './Account/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
   { path: 'privacy', component: PrivacyComponent},
   { path: 'rules', component: RulesComponent},
@@ -39,7 +42,8 @@ const appRoutes: Routes = [
     HomeComponent,
     PrivacyComponent,
     RulesComponent,
-    WorldComponent
+    WorldComponent,
+    LoginComponent
    ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ const appRoutes: Routes = [
     CoreModule,
     CharactersModule,
     AdventuresModule,
-    SessionsModule
+    SessionsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
 
   providers: [],

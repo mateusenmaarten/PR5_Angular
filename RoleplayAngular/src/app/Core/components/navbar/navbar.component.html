@@ -70,6 +70,26 @@
           >Privacy</a
         >
       </li>
+      <div *ngIf="user; then thenBlock; else elseBlock"></div>
+      <ng-template #thenBlock>
+        <li class="nav-item">
+          <a
+            (click)="[isCollapsed = !isCollapsed, logout()]"
+            class="nav-link"
+            >logout</a
+          >
+        </li>
+      </ng-template>
+      <ng-template #elseBlock>
+        <li class="nav-item">
+          <a
+            (click)="isCollapsed = !isCollapsed"
+            class="nav-link"
+            [routerLink]="'/login'"
+            >login</a
+          >
+        </li>
+      </ng-template>
     </ul>
   </div>
 </nav>

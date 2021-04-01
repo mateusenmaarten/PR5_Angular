@@ -77,6 +77,9 @@ export class CharacterEditComponent implements OnInit {
       //Update mode
       this.characterService.onUpdate(character).subscribe();
     }
-    this.router.navigateByUrl('/character');
+    this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/character']);
+  });
+    //this.router.navigateByUrl('/character');
   }
 }

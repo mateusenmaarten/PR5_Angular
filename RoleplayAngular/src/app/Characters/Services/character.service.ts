@@ -4,6 +4,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { CharacterClass } from '../models/characterClass.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { CharacterClass } from '../models/characterClass.model';
 export class CharacterService {
   characters: Character[] = [];
   characterToEdit : Character = new Character;
-  url : string = 'https://localhost:44328/api/Character';
+  url : string = environment.apiUrl + 'Character';
 
   constructor(private http : HttpClient) {}
 
@@ -23,16 +24,18 @@ export class CharacterService {
     return this.http.get<Character>(this.url+'/' + id);
   }
 
-  onAdd(character: Character) {
-    this.characters.push(character);
+  onAdd(character: Character) : Observable<any> {
+    //this.characters.push(character);
+    return this.http.post(this.url, character);
   }
 
   onUpdate(character : Character) : Observable<Character>{
     this.onGetCharacter(character.characterID).subscribe(x => { this.characterToEdit = x; });
 
+    this.characterToEdit.player = character.player;
     this.characterToEdit.characterID = character.characterID;
     this.characterToEdit.playerID = character.playerID;
-    this.characterToEdit.userName = character.player.userName;
+    //this.characterToEdit.userName = character.player.userName;
     this.characterToEdit.characterClassID = character.characterClassID;
     this.characterToEdit.characterName = character.characterName;
     this.characterToEdit.characterGender = character.characterGender;
