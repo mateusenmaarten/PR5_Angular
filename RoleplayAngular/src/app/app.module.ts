@@ -7,14 +7,13 @@ import { HomeComponent } from './home/home.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { RulesComponent } from './rules/rules.component';
 import { WorldComponent } from './world/world.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdventureComponent } from './adventure/components/adventure/adventure.component';
 import { AdventureEditComponent } from './adventure/components/adventureEdit/adventureEdit.component';
 import { SessionComponent } from './session/components/session/session.component';
 import { SessionEditComponent } from './session/components/sessionEdit/sessionEdit.component';
 import { CharactersModule } from './Characters/Characters.module';
+import { CoreModule } from './Core/Core.module';
 
 
 const appRoutes: Routes = [
@@ -46,16 +45,17 @@ const appRoutes: Routes = [
     AdventureEditComponent,
     SessionComponent,
     SessionEditComponent,
-    WorldComponent,
-    NavbarComponent,
-    FooterComponent
+    WorldComponent
    ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes,{enableTracing: false}),
     HttpClientModule,
-    CharactersModule
+    CharactersModule,
+    CoreModule,
+
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
