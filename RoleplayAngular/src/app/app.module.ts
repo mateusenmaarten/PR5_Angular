@@ -1,23 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { RulesComponent } from './rules/rules.component';
 import { WorldComponent } from './world/world.component';
-import { CharacterComponent } from './character/components/character/character.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { CharacterEditComponent } from './character/components/characterEdit/characterEdit.component';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdventureComponent } from './adventure/components/adventure/adventure.component';
 import { AdventureEditComponent } from './adventure/components/adventureEdit/adventureEdit.component';
 import { SessionComponent } from './session/components/session/session.component';
 import { SessionEditComponent } from './session/components/sessionEdit/sessionEdit.component';
+import { CharactersModule } from './Characters/Characters.module';
+
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
@@ -25,9 +23,9 @@ const appRoutes: Routes = [
   { path: 'privacy', component: PrivacyComponent},
   { path: 'rules', component: RulesComponent},
   { path: 'world', component: WorldComponent},
-  { path: 'character', component: CharacterComponent},
-  { path: 'character/add/:id', component: CharacterEditComponent},
-  { path: 'character/edit/:id', component: CharacterEditComponent},
+  { path: 'character', loadChildren: './Characters/characters.module#CharactersModule'},
+  { path: 'character/add/:id', loadChildren: './Characters/characters.module#CharactersModule'},
+  { path: 'character/edit/:id', loadChildren: './Characters/characters.module#CharactersModule'},
   { path: 'adventure', component: AdventureComponent},
   { path: 'adventure/add/:id', component: AdventureEditComponent},
   { path: 'adventure/edit/:id', component: AdventureEditComponent},
@@ -44,8 +42,6 @@ const appRoutes: Routes = [
     HomeComponent,
     PrivacyComponent,
     RulesComponent,
-    CharacterComponent,
-    CharacterEditComponent,
     AdventureComponent,
     AdventureEditComponent,
     SessionComponent,
@@ -57,8 +53,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes,{enableTracing: false}),
-    FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CharactersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

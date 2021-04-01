@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CharacterClass } from '../_models/CharacterClass.model';
+import { CharacterClass } from '../models/characterClass.model';
 
 @Injectable({
   providedIn: 'root',

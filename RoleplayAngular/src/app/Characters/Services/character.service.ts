@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Character } from '../_models/character.model';
+import { Character } from '../models/character.model';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { CharacterClass } from '../_models/CharacterClass.model';
+import { CharacterClass } from '../models/characterClass.model';
 
 @Injectable({
   providedIn: 'root',

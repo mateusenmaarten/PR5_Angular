@@ -1,5 +1,5 @@
-import { CharacterClass } from "./CharacterClass.model";
-import { Player } from "./player.model";
+import { CharacterClass } from "./characterClass.model";
+import { Player } from "../../_models/player.model";
 
 export class Character {
   public characterID? : number;

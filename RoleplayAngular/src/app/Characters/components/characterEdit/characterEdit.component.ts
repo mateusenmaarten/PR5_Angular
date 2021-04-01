@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Player } from 'src/app/_models/player.model';
 import { PlayerService } from 'src/app/_services/player.service';
-import { CharacterClassService } from 'src/app/_services/characterClass.service';
-import { CharacterClass } from 'src/app/_models/CharacterClass.model';
-import { Character } from 'src/app/_models/character.model';
-import { CharacterService } from 'src/app/_services/character.service';
+import { CharacterClassService } from 'src/app/Characters/services/characterClass.service';
+import { CharacterClass } from 'src/app/characters/models/characterClass.model';
+import { Character } from 'src/app/characters/models/character.model';
+import { CharacterService } from 'src/app/Characters/services/character.service';
 
 @Component({
   selector: 'app-characterEdit',
