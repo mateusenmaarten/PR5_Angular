@@ -20,22 +20,21 @@ export class CharacterService {
     return this.http.get<Character[]>(this.url);
   }
 
-  onGetCharacter(id : number) : Observable<Character>{
+  onGetCharacterById(id : number) : Observable<Character>{
     return this.http.get<Character>(this.url+'/' + id);
   }
 
-  onAdd(character: Character) : Observable<any> {
-    //this.characters.push(character);
+  onAdd(character: Character) : Observable<any>{
     return this.http.post(this.url, character);
   }
 
   onUpdate(character : Character) : Observable<Character>{
-    this.onGetCharacter(character.characterID).subscribe(x => { this.characterToEdit = x; });
+    this.onGetCharacterById(character.characterID).subscribe(x => { this.characterToEdit = x; });
 
     this.characterToEdit.player = character.player;
     this.characterToEdit.characterID = character.characterID;
     this.characterToEdit.playerID = character.playerID;
-    //this.characterToEdit.userName = character.player.userName;
+    this.characterToEdit.userName = character.userName;
     this.characterToEdit.characterClassID = character.characterClassID;
     this.characterToEdit.characterName = character.characterName;
     this.characterToEdit.characterGender = character.characterGender;
@@ -50,8 +49,6 @@ export class CharacterService {
   }
 
   onDelete(id: number) {
-    let character = this.characters.find(x => x.characterID === id);
-    let index = this.characters.indexOf(character, 0);
-    this.characters.splice(index,1);
+    return this.http.delete(this.url+'/' + id);
   }
 }

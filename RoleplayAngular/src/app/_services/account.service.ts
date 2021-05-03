@@ -30,14 +30,17 @@ export class AccountService {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);
+                window.location.href="/home";
                 return user;
             }));
+
     }
 
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
         this.userSubject.next(null);
-        this.router.navigate(['/home']);
+        //this.router.navigate(['/home']);
+        window.location.href="/home";
     }
 }

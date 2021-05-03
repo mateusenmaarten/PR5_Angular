@@ -2,26 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Player } from 'src/app/_models/player.model';
-import { PlayerService } from 'src/app/_services/player.service';
 import { CharacterClassService } from 'src/app/Characters/services/characterClass.service';
 import { CharacterClass } from 'src/app/characters/models/characterClass.model';
 import { Character } from 'src/app/characters/models/character.model';
 import { CharacterService } from 'src/app/Characters/services/character.service';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-characterEdit',
   templateUrl: './characterEdit.component.html',
-  styleUrls: ['./characterEdit.component.scss']
+  styleUrls: ['./characterEdit.component.scss'],
 })
 export class CharacterEditComponent implements OnInit {
+  id: number;
+  header: string;
 
-  id : number;
-  header : string;
+  classes: CharacterClass[] = [];
 
-  players : Player[] = [];
-  classes : CharacterClass[] = [];
-
-  character : Character = {
+  character: Character = {
     characterID: 0,
     playerID: 0,
     userName: '',
@@ -32,54 +30,55 @@ export class CharacterEditComponent implements OnInit {
     characterAge: 0,
     favouriteWeapon: '',
     homeTown: '',
-  }
-
+  };
+  username: string;
+  playerId: number;
   constructor(
-    private route : ActivatedRoute,
-    private router : Router,
-    private playerService : PlayerService,
-    private characterService : CharacterService,
-    private characterClassService : CharacterClassService) { }
+    private route: ActivatedRoute,
+    private characterService: CharacterService,
+    private characterClassService: CharacterClassService
+  ) {}
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.header = this.id === 0? 'Add Character' : 'Edit Character';
+    this.header = this.id === 0 ? 'Add Character' : 'Edit Character';
 
-    if(this.id != 0 ){
-      this.characterService.onGetCharacter(this.id).subscribe(x => {this.character = x});
+    if (this.id != 0) {
+      this.characterService.onGetCharacterById(this.id).subscribe((x) => {
+        this.character = x;
+      });
     }
 
-    this.players = this.playerService.onGet();
-    this.characterClassService.onGet().subscribe(x => {this.classes = x});
+    this.characterClassService.onGet().subscribe((x) => {
+      this.classes = x;
+    });
+
+    var user = JSON.parse(localStorage.getItem('user'));
+    this.username = user.username;
+    this.playerId = user.playerId;
   }
 
-  onSubmit(form : NgForm){
+  onSubmit(form: NgForm) {
     console.log(form.value);
-    let character : Character = {
-      characterID : this.id,
-      playerID : form.value.playerID,
-      userName : form.value.userName, //get from userService?
-      characterName : form.value.name,
-      characterDescription : form.value.description,
-      characterClassID : form.value.classID,
-      characterGender : form.value.gender,
-      characterAge : form.value.age,
-      favouriteWeapon : form.value.favouriteWeapon,
-      homeTown : form.value.homeTown
-    }
-    if(this.id === 0){
-      //Add mode
-      this.characterService.onAdd(character);
+    let character: Character = {
+      characterID: this.id,
+      characterName: form.value.name,
+      characterDescription: form.value.description,
+      characterClassID: form.value.classID,
+      characterGender: form.value.gender,
+      characterAge: form.value.age,
+      favouriteWeapon: form.value.favouriteWeapon,
+      homeTown: form.value.homeTown,
+      playerID: this.playerId,
+      userName: this.username
+    };
 
-      //TOASTER
-    }
-    else{
+    if (this.id === 0) {
+      //Add mode
+      this.characterService.onAdd(character).subscribe();
+    } else {
       //Update mode
       this.characterService.onUpdate(character).subscribe();
     }
-    this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/character']);
-  });
-    //this.router.navigateByUrl('/character');
   }
 }

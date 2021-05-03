@@ -9,14 +9,6 @@
         </div>
 
         <div class="form-group">
-            <label for="" >Player</label>
-            <select for="" class="form-control" [ngModel]="character.playerID" name="playerID">
-              <option *ngFor="let player of players" value={{player.playerID}}>{{player.firstName}}</option>
-            </select>
-            <span asp-validation-for="Character.PlayerID" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
             <label for="" >Class</label>
             <select for="" class="form-control" [ngModel]="character.characterClassID" name="classID">
               <option *ngFor="let class of classes" value={{class.characterClassID}}>{{class.characterClassName}}</option>

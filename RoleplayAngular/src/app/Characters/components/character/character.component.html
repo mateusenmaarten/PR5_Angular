@@ -3,16 +3,6 @@
 <a routerLink="add/0">Create a new character</a>
 <p></p>
 
-<form>
-  <div class="form-group">
-    <p>
-      <input />
-      <input type="submit" value="Search by name" class="btn btn-primary" />
-    </p>
-    <a>Show all characters</a>
-  </div>
-</form>
-
 <div class="row">
   <div
     class="col-sm-6 d-flex align-items-stretch"
@@ -42,10 +32,12 @@
         </li>
       </ul>
       <div class="card-footer">
+        <span *ngIf="character.userName === username">
         <a [routerLink]="['edit', character.characterID]">Edit</a> |
         <a routerLink="/character" (click)="onDelete(character.characterID)"
           >Delete</a
         >
+      </span>
       </div>
     </div>
   </div>
