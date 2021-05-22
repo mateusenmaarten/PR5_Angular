@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  loginSuccess: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                     this.loading = false;
+                    this.loginSuccess = false;
                 });
     }
 
