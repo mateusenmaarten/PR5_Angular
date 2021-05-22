@@ -6,7 +6,6 @@ import { CharacterClassService } from 'src/app/Characters/services/characterClas
 import { CharacterClass } from 'src/app/characters/models/characterClass.model';
 import { Character } from 'src/app/characters/models/character.model';
 import { CharacterService } from 'src/app/Characters/services/character.service';
-import { JsonpClientBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-characterEdit',
@@ -36,7 +35,8 @@ export class CharacterEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private characterService: CharacterService,
-    private characterClassService: CharacterClassService
+    private characterClassService: CharacterClassService,
+    private router : Router
   ) {}
 
   ngOnInit() {
@@ -75,10 +75,16 @@ export class CharacterEditComponent implements OnInit {
 
     if (this.id === 0) {
       //Add mode
-      this.characterService.onAdd(character).subscribe();
+      this.characterService.onAdd(character).subscribe(x =>{
+        console.log(x);
+        this.router.navigate(['/character']);
+      });
     } else {
       //Update mode
-      this.characterService.onUpdate(character).subscribe();
+      this.characterService.onUpdate(character).subscribe(x =>{
+        console.log(x);
+        this.router.navigate(['/character']);
+      });
     }
   }
 }

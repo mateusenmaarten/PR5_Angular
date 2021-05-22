@@ -29,7 +29,6 @@ export class CharacterService {
   }
 
   onUpdate(character : Character) : Observable<Character>{
-    this.onGetCharacterById(character.characterID).subscribe(x => { this.characterToEdit = x; });
 
     this.characterToEdit.player = character.player;
     this.characterToEdit.characterID = character.characterID;

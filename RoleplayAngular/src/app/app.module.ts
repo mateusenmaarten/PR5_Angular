@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { RulesComponent } from './rules/rules.component';
 import { WorldComponent } from './world/world.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CharactersModule } from './Characters/Characters.module';
 import { CoreModule } from './Core/Core.module';
 import { AdventuresModule } from './Adventures/Adventures.module';
 import { SessionsModule } from './Sessions/Sessions.module';
 import { LoginComponent } from './Account/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 
 const appRoutes: Routes = [
@@ -57,7 +59,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule
   ],
 
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

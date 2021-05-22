@@ -25,23 +25,19 @@ export class CharacterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.characterService.onGet().subscribe((x) => {
-      this.characters = x;
-    });
     var user = JSON.parse(localStorage.getItem('user'));
     if(user != null){
       this.username = user.username;
       this.playerId = user.playerId;
     }
+    this.characterService.onGet().subscribe((x) => {
+      this.characters = x;
+    });
   }
 
   onDelete(id: number) {
-    //check for user == character.userId -> else no authority to delete!
-    let currentUser = this.accountService.userValue;
-    this.characterService.onGetCharacterById(id).subscribe((x) => {
-      this.characterToDelete = x;
-    });
     this.characterService.onDelete(id).subscribe();
+    this.router.navigate(['/character']);
     window.location.reload();
   }
 }
